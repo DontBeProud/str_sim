@@ -7,13 +7,13 @@ pub fn sim_jaro(s1: &str, s2: &str) -> f64 {
     let s2_len = s2.chars().count();
     if s1_len == 0 && s2_len == 0 { return 1.0; }
 
-    let match_distance = cmp::max(s1_len, s2_len) / 2 - 1;
+    let match_distance: isize = cmp::max(cmp::max(s1_len, s2_len) as isize / 2 - 1, 0);
     let mut s1_matches = vec![false; s1_len];
     let mut s2_matches = vec![false; s2_len];
     let mut m: isize = 0;
     for i in 0..s1_len {
-        let start = cmp::max(0, i as isize - match_distance as isize) as usize;
-        let end = cmp::min(i + match_distance + 1, s2_len);
+        let start = cmp::max(0, i as isize - match_distance) as usize;
+        let end = cmp::min(i + match_distance as usize + 1, s2_len);
         for j in start..end {
             if !s2_matches[j] && s1.chars().nth(i) == s2.chars().nth(j) {
                 s1_matches[i] = true;
