@@ -13,7 +13,7 @@ currently contains the following algorithms : 【levenshtein、jaro、jaro_winkl
 ## Installation
 ```toml
 [dependencies]
-str_sim = "0.1.1"
+str_sim = "0.1.2"
 ```
 
 ## Examples
